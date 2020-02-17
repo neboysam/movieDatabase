@@ -1,0 +1,63 @@
+{% extends "partials/base.html.twig" %}
+
+{% block title %}Add Movie{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ baseUrl }}/assets/css/style.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<h1>Add Movie</h1>
+<div class="container">
+  <div class="row"> 
+    <form action="{{baseUrl}}/movies/add" method="POST" class="mx-auto" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="titre">Titre</label>
+        <input type="text" name="titre" class="form-control" id="titre" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="annee_sortie">Annee de sortie</label>
+        <input type="number" name="annee_sortie" class="form-control" id="annee_sortie">
+      </div>
+      <div class="form-group">
+        <label for="director">Director</label>
+        <select name="director" class="form-control" id="director">
+        {% for director in directors %}
+        <option value="{{ director.id_artiste }}">{{ director.prenom_artiste }} {{ director.nom_artiste }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Movie image input</label>
+        <input type="file" name="affiche" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="form-group">
+        <label for="annee_sortie">Synopsis</label>
+        <textarea name="synopsis" class="form-control" id="synopsis" rows="3" placeholder="Synopsis"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="genre">Genre</label>
+        <select name="genre" class="form-control" id="genre">
+        {% for genre in genres %}
+        <option value="{{ genre.id_genre }}">{{ genre.nom_genre }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <button type="submit" name="submit" class="btn btn-primary" value="Submit">Submit</button>
+      {# <div class="form-group">
+        <label for="affiche">Affiche</label>
+        <input type="file" name="affiche" class="form-control" id="affiche">
+      </div> #}
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

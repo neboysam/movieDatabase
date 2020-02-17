@@ -1,0 +1,38 @@
+{% extends "partials/base.html.twig" %}
+
+{% block title %}Artists Database{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="assets/css/style.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<h1>Artists List</h1>
+<div class="back_page">
+  <div class="container">
+    <div class="row pt-4">
+      {% for exemple in result %}
+      <div class="col-md-3">
+        <div class="card text-white bg-dark mb-4">
+          <img src='../Uploads/posters/{{ exemple.image }}' class="card-img b-0">
+          <div class="card-body">
+            <h5 class="card-title">{{ exemple.nom_artiste }} {{ exemple.prenom_artiste }}</h5>
+            <p>Birth date: {{ exemple.date_naissance }}</p>
+            <p class="card-text">Biography: <br>{{ exemple.biography }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
