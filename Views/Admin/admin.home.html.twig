@@ -1,6 +1,6 @@
 {% extends "partials/base.html.twig" %}
 
-{% block title %}Movies Database{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block header %}
 {% endblock %}
@@ -13,7 +13,7 @@
       {% for movies in allMovies %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
-          <a href="{{baseUrl}}/movies/show/{{movies.movie_id}}"><img src='{{baseUrl}}/Uploads/posters/{{ movies.poster }}' class="card-img b-0"></a>
+          <a href="{{baseUrl}}/show/{{movies.movie_id}}"><img src='{{baseUrl}}/Uploads/posters/{{ movies.poster }}' class="card-img b-0"></a>
           <div class="card-body">
             <h5 class="card-title">{{ movies.title }}</h5>
             {# <p class="card-text">{{ exemple.synposis }}</p> #}
