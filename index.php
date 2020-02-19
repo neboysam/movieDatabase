@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 
 $mainRouter = new Router($_GET['uri']);
 
-$mainRouter->addRouteGET('/', 'Home.index');
+$mainRouter->addRouteGET('/', 'Movies.index');
 $mainRouter->addRouteGET('/movies/show/:id', "Movies.showMovie");
 
 $mainRouter->addRouteGET('/movies/add', "Movies.addMovie");

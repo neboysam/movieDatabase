@@ -7,34 +7,22 @@ class HomeModel extends Model {
     }
 
     public function getActors($id) {
-        $req = $this->pdo->prepare('SELECT nom_artiste, prenom_artiste FROM artiste a, film f, artiste_has_film m where a.id_artiste = m.artiste_id_artiste AND f.id_film = m.film_id_film AND f.id_film = ? AND a.id_artiste NOT IN (SELECT artiste_id_artiste FROM film)');
+        $req = $this->pdo->prepare('SELECT lastname_artist, firstname_artist FROM artists a, movies m, artists_movies r where a.id_artist = r.artists_movies AND m.movie_id = r.id_movie AND m.movie_id = ? AND a.id_artist NOT IN (SELECT id_artist FROM movies)');
         $req->execute([$id]);
         return $req->fetchAll();
     }
 
     public function getMovieDetails($id) {
-      $req = $this->pdo->prepare('SELECT * FROM film WHERE id_film = ?');
+      $req = $this->pdo->prepare('SELECT * FROM movies WHERE movie_id = ?');
       $req->execute([$id]);
       return $req->fetch();
   }
 
     public function getAllMovies() {
-        //$req = $this->pdo->prepare('SELECT * FROM exemple');
-        //$req = $this->pdo->prepare('SELECT exemple.*, truc.* FROM exemple, truc, exemple_truc WHERE exemple.id = exemple_truc.id_exemple AND exemple_truc.id_truc = truc.id');
         $req = $this->pdo->prepare(
-            // 'SELECT e.*, t.*,
-            // GROUP_CONCAT(DISTINCT t.text SEPARATOR "\#~#") AS text
-            // FROM exemple e
-            // INNER JOIN exemple_truc et ON e.id = et.id_exemple
-            // INNER JOIN truc t ON et.id_truc = t.id_truc
-            // GROUP BY e.id'
-            'SELECT * FROM film'
+            'SELECT * FROM movies'
         );
         $req->execute();
         return $req->fetchAll();
     }
-
-    // public function addMovie() {
-
-    // }
 }

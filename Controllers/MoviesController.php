@@ -24,10 +24,10 @@ class MoviesController extends Controller
   }
 
     public function index() {
-      $result = $this->model->getAllMovies();
+      $allMovies = $this->model->getAllMovies();
       $pageTwig = 'Movies/allMovies.html.twig';
       $template = self::$_twig->load($pageTwig);
-      echo $template->render(["result" => $result]);
+      echo $template->render(["allMovies" => $allMovies]);
     }
 
     public function showMovie(int $id) {

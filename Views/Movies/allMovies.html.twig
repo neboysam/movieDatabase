@@ -14,12 +14,12 @@
 <div class="back_page">
   <div class="container">
     <div class="row pt-4">
-      {% for example in result %}
+      {% for movies in allMovies %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
-          <a href="{{baseUrl}}/movies/show/{{example.movie_id}}"><img src='../Uploads/posters/{{ example.poster }}' class="card-img b-0"></a>
+          <a href="{{baseUrl}}/movies/show/{{movies.movie_id}}"><img src='{{baseUrl}}/Uploads/posters/{{ movies.poster }}' class="card-img b-0"></a>
           <div class="card-body">
-            <h5 class="card-title">{{ example.title }}</h5>
+            <h5 class="card-title">{{ movies.title }}</h5>
             {# <p class="card-text">{{ exemple.synposis }}</p> #}
             {# <a href="{{baseUrl}}/show/{{exemple.id_film}}" class="btn btn-info">Show</a> #}
           </div>
