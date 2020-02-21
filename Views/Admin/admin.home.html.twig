@@ -10,7 +10,7 @@
 <div class="back_page">
   <div class="container">
     <div class="row pt-4">
-      {% for movies in allMovies %}
+      {# {% for movies in allMovies %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
           <a href="{{baseUrl}}/show/{{movies.movie_id}}"><img src='{{baseUrl}}/Uploads/posters/{{ movies.poster }}' class="card-img b-0"></a>
@@ -18,10 +18,26 @@
             <h5 class="card-title">{{ movies.title }}</h5>
             {# <p class="card-text">{{ exemple.synposis }}</p> #}
             {# <a href="{{baseUrl}}/show/{{exemple.id_film}}" class="btn btn-info">Show</a> #}
-          </div>
+          {# </div>
         </div>
+      </div> #}
+      {# {% endfor %} #}
+      <div class="card-body">
+        <h5 class="card-title">Here you can choose to do the following:</h5>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Add new movie to the database</td>
+              <td><button type="button" class="btn btn-primary btn-sm">Add movie</button></td>  
+            </tr>
+            <tr>
+              <td>Update the movies</td>
+              <td><button type="button" class="btn btn-primary btn-sm">Update movies</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
-      {% endfor %}
     </div>
   </div>
 </div>

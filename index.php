@@ -16,6 +16,7 @@ $mainRouter->addRouteGET('/admin/updatemovies', "Movies.getAllMovies");
 $mainRouter->addRouteGET('/movies/updatemovies/:id', "Movies.getMovie");
 $mainRouter->addRoutePOST('/movies/updatemovies/:id', "Movies.updateMovie");
 
+// List of all artists
 $mainRouter->addRouteGET('/artists', 'Artists.index');
 
 // Administration
