@@ -8,18 +8,22 @@ class UsersModel extends Model {
 
     // Register user
     public function register($data){
-      $this->pdo->query('INSERT INTO users (username, user_email, user_password) VALUES(:username, :user_email, :user_password)');
-      // Bind values
-      $this->pdo->bind(':username', $data['name']);
-      $this->pdo->bind(':user_email', $data['email']);
-      $this->pdo->bind(':user_password', $data['password']);
+      $sql = "INSERT INTO users (username, user_email, user_password) VALUES (:name, :email, :password)";
+      $req = self::$_pdo->prepare($sql);
+      return $req->execute(['name' => $data['name'], 'email' => $data['email'], 'password' => $data['password']]);
 
-      // Execute
-      if($this->pdo->execute()){
-        return true;
-      } else {
-        return false;
-      }
+      // $this->pdo->query('INSERT INTO users (username, user_email, user_password) VALUES(:username, :user_email, :user_password)');
+      // // Bind values
+      // $this->pdo->bindParam(':username', $data['name']);
+      // $this->pdo->bindParam(':user_email', $data['email']);
+      // $this->pdo->bindParam(':user_password', $data['password']);
+
+      // // Execute
+      // if($this->pdo->execute()){
+      //   return true;
+      // } else {
+      //   return false;
+      // }
     }
 
     // Find user by email
