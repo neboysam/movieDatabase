@@ -5,7 +5,6 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-
 /**
  * Class MoviesController
  * @mixin

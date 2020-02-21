@@ -20,10 +20,10 @@ class AdminController extends Controller
     self::$_twig = parent::getTwig();
   }
 
-    public function index() {
-      // $allMovies = $this->model->getAllMovies();
-      $pageTwig = 'Admin/admin.home.html.twig';
-      $template = self::$_twig->load($pageTwig);
-      echo $template->render();
-    }
+  public function index() {
+    // $allMovies = $this->model->getAllMovies();
+    $pageTwig = 'Admin/admin.home.html.twig';
+    $template = self::$_twig->load($pageTwig);
+    echo $template->render();
+  }
 }

@@ -22,6 +22,10 @@ $mainRouter->addRouteGET('/artists', 'Artists.index');
 // Administration
 $mainRouter->addRouteGET('/admin', 'Admin.index');
 
+// User Registration
+$mainRouter->addRouteGET('/register', 'Users.register');
+$mainRouter->addRoutePOST('/register', 'Users.register');
+
 try {
     $mainRouter->startRouter();
 } catch (RouterException $e) {
