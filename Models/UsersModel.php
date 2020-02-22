@@ -11,20 +11,24 @@ class UsersModel extends Model {
       $sql = "INSERT INTO users (username, user_email, user_password) VALUES (:name, :email, :password)";
       $req = self::$_pdo->prepare($sql);
       return $req->execute(['name' => $data['name'], 'email' => $data['email'], 'password' => $data['password']]);
-      var_dump($data);
+    }
 
-      // $this->pdo->query('INSERT INTO users (username, user_email, user_password) VALUES(:username, :user_email, :user_password)');
-      // // Bind values
-      // $this->pdo->bindParam(':username', $data['name']);
-      // $this->pdo->bindParam(':user_email', $data['email']);
-      // $this->pdo->bindParam(':user_password', $data['password']);
+    // Login User
+    public function login($email, $password){
+      // $this->db->query('SELECT * FROM users WHERE email = :email');
+      // $this->db->bind(':email', $email);
+      // $row = $this->db->single();
 
-      // // Execute
-      // if($this->pdo->execute()){
-      //   return true;
-      // } else {
-      //   return false;
-      // }
+      $req = $this->pdo->prepare('SELECT * FROM users WHERE user_email = ?');
+      $req->execute([$email]);
+      return $req->fetch();
+
+      $hashed_password = $req->password;
+      if(password_verify($password, $hashed_password)){
+        return $req;
+      } else {
+        return false;
+      }
     }
 
     // Find user by email

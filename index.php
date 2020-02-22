@@ -26,6 +26,10 @@ $mainRouter->addRouteGET('/admin', 'Admin.index');
 $mainRouter->addRouteGET('/register', 'Users.register');
 $mainRouter->addRoutePOST('/register', 'Users.register');
 
+// User Login
+$mainRouter->addRouteGET('/login', 'Users.login');
+$mainRouter->addRoutePOST('/login', 'Users.login');
+
 try {
     $mainRouter->startRouter();
 } catch (RouterException $e) {
