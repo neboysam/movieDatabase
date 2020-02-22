@@ -7,10 +7,11 @@ class UsersModel extends Model {
     }
 
     // Register user
-    public function register($data){
+    public function registerData($data){
       $sql = "INSERT INTO users (username, user_email, user_password) VALUES (:name, :email, :password)";
       $req = self::$_pdo->prepare($sql);
       return $req->execute(['name' => $data['name'], 'email' => $data['email'], 'password' => $data['password']]);
+      var_dump($data);
 
       // $this->pdo->query('INSERT INTO users (username, user_email, user_password) VALUES(:username, :user_email, :user_password)');
       // // Bind values

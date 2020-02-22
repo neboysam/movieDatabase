@@ -17,7 +17,7 @@ class UsersController extends Controller
   public function __construct()
   {
     parent::__construct();
-    $this->model = new UsersModel();
+    $this->usersModel = new UsersModel();
 
     self::$_twig = parent::getTwig();
   }
@@ -157,12 +157,13 @@ class UsersController extends Controller
       // Validate Email
       if(empty($data['email'])){
         $data['email_err'] = 'Please enter email';
-      } else {
-        // Check email
-        if($this->model->findUserByEmail($data['email'])){
-          $data['email_err'] = 'Email is already taken';
-        }
       }
+      // } else {
+      //   // Check email
+      //   if($this->model->findUserByEmail($data['email'])){
+      //     $data['email_err'] = 'Email is already taken';
+      //   }
+      // }
 
       // Validate Name
       if(empty($data['name'])){
@@ -193,8 +194,8 @@ class UsersController extends Controller
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         // Register User
-        if($this->model->register($data)){
-          redirect('/login');
+        if($this->usersModel->registerData($data)){
+          header('Location: login');
         } else {
           die('Something went wrong');
         }
