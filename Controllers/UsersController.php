@@ -155,7 +155,7 @@ class UsersController extends Controller
         // Validated
         
         // Check and set logged in user
-        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+        $loggedInUser = $this->usersModel->login($data['email'], $data['password']);
 
         if($loggedInUser){
           // Create Session
@@ -163,22 +163,20 @@ class UsersController extends Controller
         } else {
           $data['password_err'] = 'Password incorrect';
 
-          $this->view('users/login', $data);
+          $pageTwig = 'Admin/login.html.twig';
+          $template = self::$_twig->load($pageTwig);
+          echo $template->render(["data" => $data]);
         }
-      } else {
-        // Load view with errors
-        $this->view('users/login', $data);
-      }
-
-      } else {
+    
+    } else {
         // Load view with errors
         // $this->view('users/register', $data);
         $pageTwig = 'Admin/login.html.twig';
         $template = self::$_twig->load($pageTwig);
         echo $template->render(["data" => $data]);
       }
-
-    } else {
+    }
+     else {
       // Init data
       $data = [
         'name' => '',
@@ -193,9 +191,32 @@ class UsersController extends Controller
 
       // Load view
       // $this->view('users/register', $data);
-      $pageTwig = 'Admin/logi.html.twig';
+      $pageTwig = 'Admin/login.html.twig';
       $template = self::$_twig->load($pageTwig);
       echo $template->render(["data" => $data]);
+    }
+  }
+
+  public function createUserSession($user){
+    $_SESSION['user_id'] = $user->id;
+    $_SESSION['user_email'] = $user->email;
+    $_SESSION['user_name'] = $user->name;
+    header('Location: admin');
+  }
+
+  public function logout(){
+    unset($_SESSION['user_id']);
+    unset($_SESSION['user_email']);
+    unset($_SESSION['user_name']);
+    session_destroy();
+    header('Location: login');
+  }
+
+  public function isLoggedIn(){
+    if(isset($_SESSION['user_id'])){
+      return true;
+    } else {
+      return false;
     }
   }
 }
