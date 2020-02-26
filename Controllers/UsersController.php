@@ -18,7 +18,8 @@ class UsersController extends Controller
     parent::__construct();
     $this->usersModel = new UsersModel();
 
-    self::$_twig = parent::getTwig();
+    //self::$_twig = parent::getTwig();
+    session_start();
   }
 
   public function register()
@@ -166,7 +167,8 @@ class UsersController extends Controller
           $hashed_password = $loggedInUser["user_password"];
           if (password_verify($data['password'], $hashed_password)) {
             $this->createUserSession($loggedInUser);
-          } //Password is wrong but user email is right
+            var_dump($_SESSION['id']);
+          } // Password is wrong but user email is right
             else {
               $data['password_err'] = 'Password incorrect';
               $pageTwig = 'Admin/login.html.twig';
@@ -204,25 +206,25 @@ class UsersController extends Controller
 
   public function createUserSession($user)
   {
-    $_SESSION['user_id'] = $user["id"];
+    $_SESSION['id'] = $user["id"];
     $_SESSION['user_email'] = $user["user_email"];
-    $_SESSION['user_name'] = $user["username"];
+    $_SESSION['username'] = $user["username"];
     header('Location: admin');
   }
 
   public function logout()
   {
-
-    unset($_SESSION['user_id']);
+    var_dump($_SESSION);
+    unset($_SESSION['id']);
     unset($_SESSION['user_email']);
-    unset($_SESSION['user_name']);
+    unset($_SESSION['username']);
     session_destroy();
     header('Location: login');
   }
 
-  public function isLoggedIn()
+  private function isLoggedIn()
   {
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['id'])) {
       return true;
     } else {
       return false;

@@ -22,8 +22,18 @@ class AdminController extends Controller
 
   public function index() {
     // $allMovies = $this->model->getAllMovies();
+    if(!$this->isLoggedIn()) header('Location: login');
     $pageTwig = 'Admin/admin.home.html.twig';
     $template = self::$_twig->load($pageTwig);
     echo $template->render();
+  }
+
+  private function isLoggedIn()
+  {
+    if (isset($_SESSION['id'])) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

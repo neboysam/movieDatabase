@@ -35,6 +35,9 @@ $mainRouter->addRoutePOST('/register', 'Users.register');
 $mainRouter->addRouteGET('/login', 'Users.login');
 $mainRouter->addRoutePOST('/login', 'Users.login');
 
+// User Logout
+$mainRouter->addRouteGET('/logout', 'Users.logout');
+
 try {
     $mainRouter->startRouter();
 } catch (RouterException $e) {
