@@ -1,7 +1,12 @@
 <?php
 require_once 'vendor/autoload.php';
 
-$mainRouter = new Router($_GET['uri']);
+// $mainRouter = new Router($_GET['uri']);
+if (isset($_GET['uri']) && ($_GET['uri'] !== "")) {
+    $mainRouter = new Router($_GET['uri']);
+} else {
+    $mainRouter = new Router("/");
+}
 
 $mainRouter->addRouteGET('/', 'Movies.index');
 $mainRouter->addRouteGET('/movies/show/:id', "Movies.showMovie");

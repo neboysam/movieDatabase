@@ -5,17 +5,17 @@
 }
 
 body {
-  background-color: #DAE0FF;
+  background: url('../img/bg.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 0px;
   padding-bottom: 3rem;
-}
-
-.back_page {
-  background-color: lightblue;
 }
 
 .card-block ul {
