@@ -165,6 +165,7 @@ class UsersController extends Controller
         if ($loggedInUser) {
           // Create Session
           $hashed_password = $loggedInUser["user_password"];
+          
           if (password_verify($data['password'], $hashed_password)) {
             $this->createUserSession($loggedInUser);
             var_dump($_SESSION['id']);
