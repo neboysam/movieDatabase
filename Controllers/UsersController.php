@@ -21,9 +21,10 @@ class UsersController extends Controller
     self::$_twig = parent::getTwig();
   }
 
-    public function register() {
+  public function register()
+  {
     // Check for POST
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Process form
 
       // Sanitize POST data
@@ -42,7 +43,7 @@ class UsersController extends Controller
       ];
 
       // Validate Email
-      if(empty($data['email'])){
+      if (empty($data['email'])) {
         $data['email_err'] = 'Please enter email';
       }
       // } else {
@@ -53,40 +54,39 @@ class UsersController extends Controller
       // }
 
       // Validate Name
-      if(empty($data['name'])){
+      if (empty($data['name'])) {
         $data['name_err'] = 'Please enter name';
       }
 
       // Validate Password
-      if(empty($data['password'])){
+      if (empty($data['password'])) {
         $data['password_err'] = 'Please enter password';
-      } elseif(strlen($data['password']) < 6){
+      } elseif (strlen($data['password']) < 6) {
         $data['password_err'] = 'Password must be at least 6 characters';
       }
 
       // Validate Confirm Password
-      if(empty($data['confirm_password'])){
+      if (empty($data['confirm_password'])) {
         $data['confirm_password_err'] = 'Please confirm password';
       } else {
-        if($data['password'] != $data['confirm_password']){
+        if ($data['password'] != $data['confirm_password']) {
           $data['confirm_password_err'] = 'Passwords do not match';
         }
       }
 
       // Make sure errors are empty
-      if(empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
+      if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
         // Validated
-        
+
         // Hash Password
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         // Register User
-        if($this->usersModel->registerData($data)){
+        if ($this->usersModel->registerData($data)) {
           header('Location: login');
         } else {
           die('Something went wrong');
         }
-
       } else {
         // Load view with errors
         // $this->view('users/register', $data);
@@ -94,7 +94,6 @@ class UsersController extends Controller
         $template = self::$_twig->load($pageTwig);
         echo $template->render(["data" => $data]);
       }
-
     } else {
       // Init data
       $data = [
@@ -116,9 +115,12 @@ class UsersController extends Controller
     }
   }
 
-  public function login() {
+  public function login()
+  {
+    // $test = (new ArtistsController())->test(); see ArtistsController.php, line 25
+
     // Check for POST
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Process form
 
       // Sanitize POST data
@@ -130,10 +132,10 @@ class UsersController extends Controller
         'password' => trim($_POST['password']),
         'email_err' => '',
         'password_err' => '',
-        ];
+      ];
 
       // Validate Email
-      if(empty($data['email'])){
+      if (empty($data['email'])) {
         $data['email_err'] = 'Please enter email';
       }
       // } else {
@@ -144,39 +146,42 @@ class UsersController extends Controller
       // }
 
       // Validate Password
-      if(empty($data['password'])){
+      if (empty($data['password'])) {
         $data['password_err'] = 'Please enter password';
-      } elseif(strlen($data['password']) < 6){
+      } elseif (strlen($data['password']) < 6) {
         $data['password_err'] = 'Password must be at least 6 characters';
       }
 
       // Make sure errors are empty
-      if(empty($data['email_err']) && empty($data['password_err'])){
+      if (empty($data['email_err']) && empty($data['password_err'])) {
         // Validated
-        
+
         // Check and set logged in user
-        $loggedInUser = $this->usersModel->login($data['email'], $data['password']);
+        $loggedInUser = $this->usersModel->login($data['email']);
 
-        if($loggedInUser){
+        // var_dump($loggedInUser);
+
+        if ($loggedInUser) {
           // Create Session
-          $this->createUserSession($loggedInUser);
-        } else {
-          $data['password_err'] = 'Password incorrect';
-
-          $pageTwig = 'Admin/login.html.twig';
-          $template = self::$_twig->load($pageTwig);
-          echo $template->render(["data" => $data]);
-        }
-    
-    } else {
+          $hashed_password = $loggedInUser["user_password"];
+          if (password_verify($data['password'], $hashed_password)) {
+            $this->createUserSession($loggedInUser);
+          } //Password is wrong but user email is right
+            else {
+              $data['password_err'] = 'Password incorrect';
+              $pageTwig = 'Admin/login.html.twig';
+              $template = self::$_twig->load($pageTwig);
+              echo $template->render(["data" => $data]);
+            }
+        } 
+      } else {
         // Load view with errors
         // $this->view('users/register', $data);
         $pageTwig = 'Admin/login.html.twig';
         $template = self::$_twig->load($pageTwig);
         echo $template->render(["data" => $data]);
       }
-    }
-     else {
+    } else {
       // Init data
       $data = [
         'name' => '',
@@ -197,14 +202,17 @@ class UsersController extends Controller
     }
   }
 
-  public function createUserSession($user){
-    $_SESSION['user_id'] = $user->id;
-    $_SESSION['user_email'] = $user->email;
-    $_SESSION['user_name'] = $user->name;
+  public function createUserSession($user)
+  {
+    $_SESSION['user_id'] = $user["id"];
+    $_SESSION['user_email'] = $user["user_email"];
+    $_SESSION['user_name'] = $user["username"];
     header('Location: admin');
   }
 
-  public function logout(){
+  public function logout()
+  {
+
     unset($_SESSION['user_id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
@@ -212,8 +220,9 @@ class UsersController extends Controller
     header('Location: login');
   }
 
-  public function isLoggedIn(){
-    if(isset($_SESSION['user_id'])){
+  public function isLoggedIn()
+  {
+    if (isset($_SESSION['user_id'])) {
       return true;
     } else {
       return false;

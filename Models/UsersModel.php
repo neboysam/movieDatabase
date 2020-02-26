@@ -14,7 +14,7 @@ class UsersModel extends Model {
     }
 
     // Login User
-    public function login($email, $password){
+    public function login($email){
       // $this->db->query('SELECT * FROM users WHERE email = :email');
       // $this->db->bind(':email', $email);
       // $row = $this->db->single();
@@ -22,13 +22,6 @@ class UsersModel extends Model {
       $req = $this->pdo->prepare('SELECT * FROM users WHERE user_email = ?');
       $req->execute([$email]);
       return $req->fetch();
-
-      $hashed_password = $req->password;
-      if(password_verify($password, $hashed_password)){
-        return $req;
-      } else {
-        return false;
-      }
     }
 
     // Find user by email
@@ -48,10 +41,10 @@ class UsersModel extends Model {
     }
 
     // Get result set as array of objects
-    public function resultSet(){
-      $this->execute();
-      return $this->stmt->fetchAll(PDO::FETCH_OBJ);
-    }
+    // public function resultSet(){
+    //   $this->execute();
+    //   return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+    // }
 
     // Get row count
     public function rowCount(){

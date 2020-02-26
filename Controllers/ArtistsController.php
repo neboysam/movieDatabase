@@ -22,6 +22,11 @@ class ArtistsController extends Controller
     self::$_twig = parent::getTwig();
   }
 
+  // public function test() // this is to test calling another class from this class
+  // {
+  //   echo "test public";
+  // }
+
     public function index() {
       $result = $this->model->getAllArtists();
       $pageTwig = 'Artists/allArtists.html.twig';
