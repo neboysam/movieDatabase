@@ -1,4 +1,4 @@
-{% extends "partials/base.html.twig" %}
+{% extends "Admin/partials/base.admin.html.twig" %}
 
 {% block title %}Register User{% endblock %}
 
@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
   <div class="row mt-5">
-    <div class="col-md-6 mx-auto mt-5">
+    <div class="col-md-6 mx-auto mt-1">
       <div class="card card-body bg-light ">
         <h2>Create An Account</h2>
         <p>Please fill out this form to register with us</p>
@@ -46,6 +47,7 @@
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block footer %}

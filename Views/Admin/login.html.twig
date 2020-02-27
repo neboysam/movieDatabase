@@ -1,4 +1,4 @@
-{% extends "partials/base.html.twig" %}
+{% extends "Admin/partials/base.admin.html.twig" %}
 
 {% block title %}Login{% endblock %}
 
@@ -6,8 +6,9 @@
 {% endblock %}
 
 {% block body %}
+<div class="container">
   <div class="row mt-5">
-    <div class="col-md-6 mx-auto mt-5">
+    <div class="col-md-6 mx-auto mt-1">
       <div class="card card-body bg-light">
         <h2>Login</h2>
         <p>Please fill in this form to log in</p>
@@ -28,13 +29,14 @@
               <input type="submit" value="Login" class="btn btn-success btn-block">
             </div>
             <div class="col">
-              <a href="{{baseUrl }}/register" class="btn btn-dark btn-block">Don't have an account? Register</a>
+              <a href="{{baseUrl }}/register" class="btn btn-dark btn-block">No account? Register</a>
             </div>
           </div>
         </form>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}
 
 {% block footer %}

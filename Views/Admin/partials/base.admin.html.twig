@@ -8,12 +8,13 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     {# <link rel="icon" href="{{ baseUrl }}/assets/img/favicon.png" type="image/png"> #}
     {% block stylesheets %}
-
+      <link rel="stylesheet" href="{{ baseUrl }}/assets/css/admin_style.css">
     {% endblock %}
 </head>
+
 <body>
 <header role="banner">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ baseUrl }}/admin">Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuHide"
