@@ -11,16 +11,18 @@ if (isset($_GET['uri']) && ($_GET['uri'] !== "")) {
 $mainRouter->addRouteGET('/', 'Movies.index');
 $mainRouter->addRouteGET('/movies/show/:id', "Movies.showMovie");
 
-$mainRouter->addRouteGET('/movies/add', "Movies.addMovie");
-$mainRouter->addRoutePOST('/movies/add', "Movies.insertNewMovie");
+$mainRouter->addRouteGET('/admin/movies/add', "Movies.addMovie");
+$mainRouter->addRoutePOST('/admin/movies/add', "Movies.insertNewMovie");
 
 // A list of all the movies with the update and delete options
-$mainRouter->addRouteGET('/movies/getallmovies', "Movies.getAllMovies");
+$mainRouter->addRouteGET('/admin/movies/getallmovies', "Movies.getAllMovies");
 
-// Show all movies; update or delete each movie separately
-$mainRouter->addRouteGET('/movies/managemovies/:id', "Movies.getMovie");
-$mainRouter->addRoutePOST('/movies/updatemovie/:id', "Movies.updateMovie");
-$mainRouter->addRouteGET('/movies/deletemovie/:id', "Movies.deleteMovie");
+// Update movie
+$mainRouter->addRouteGET('/admin/movies/updatemovie/:id', "Movies.getMovie");
+$mainRouter->addRoutePOST('/admin/movies/updatemovie/:id', "Movies.updateMovie");
+
+// Delete movie
+$mainRouter->addRouteGET('/admin/movies/deletemovie/:id', "Movies.deleteMovie");
 
 // Delete movie
 // $mainRouter->addRouteGET('/movies/delete', "Movies.getAllMovies");

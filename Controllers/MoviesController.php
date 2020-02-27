@@ -98,6 +98,18 @@ class MoviesController extends Controller
     }
 
     public function updateMovie($movie_id) {
+      $movieDetails = $this->model->getMovieDetails($movie_id);
+      $director = $this->model->getDirectorDetails($movie_id);
+      $directors = $this->model->getAllOtherDirectors($movie_id);
+
+      $genre = $this->model->getGenre($movie_id);
+      $genres = $this->model->getAllOtherGenres($movie_id);
+
+      $pageTwig = 'Movies/getMovie.html.twig';
+      $template = self::$_twig->load($pageTwig);
+      echo $template->render(["movieDetails" => $movieDetails, 'director' => $director, 'directors' => $directors, 'genre' => $genre, 'genres' => $genres]);
+
+
       $title = $_POST['title'];
       $release_year = $_POST['release_year'];
       $poster = $_FILES['poster']['name'];
