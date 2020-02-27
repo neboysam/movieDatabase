@@ -10,17 +10,17 @@
 {% endblock %}
 
 {% block body %}
-<h1>Your Favorite Movies Database</h1>
+<h1 class="text-danger text-center mt-5 mb-4">Your Favorite Movies Database</h1>
 <div class="back_page">
   <div class="container">
     <div class="row pt-4">
-      {% for example in getAllMovies %}
+      {% for movie in getAllMovies %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
-          <img src='/Uploads/posters/{{ example.poster }}' class="card-img b-0">
+          <img src='/Uploads/posters/{{ movie.poster }}' class="card-img b-0">
           <div class="card-body">
-            <h5 class="card-title">{{ example.title }}</h5>
-            <a href="{{baseUrl}}/movies/updatemovies/{{example.movie_id}}" class="btn btn-info">Update Movie</a>
+            <h5 class="card-title">{{ movie.title }}</h5>
+            <a href="{{baseUrl}}/movies/updatemovies/{{movie.movie_id}}" class="btn btn-info">Update Movie</a>
           </div>
         </div>
       </div>

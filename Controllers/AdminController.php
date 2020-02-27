@@ -18,12 +18,13 @@ class AdminController extends Controller
     parent::__construct();
     // $this->model = new HomeModel();
     self::$_twig = parent::getTwig();
+    session_start();
   }
 
   public function index() {
     // $allMovies = $this->model->getAllMovies();
-    if(!$this->isLoggedIn()) {header('Location: login');}
-
+    if(!$this->isLoggedIn()) header('Location: login');
+    
     $pageTwig = 'Admin/admin.home.html.twig';
     $template = self::$_twig->load($pageTwig);
     echo $template->render();

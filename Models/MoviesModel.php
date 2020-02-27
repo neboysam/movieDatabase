@@ -49,15 +49,15 @@ class MoviesModel extends Model {
 
     public function getDirectorDetails($id) {
       $req = $this->pdo->prepare(
-        'SELECT DISTINCT a.id_artiste, a.nom_artiste, a.prenom_artiste FROM artiste a, film f WHERE a.id_artiste = f.artiste_id_artiste AND f.id_film = ?');
+        'SELECT DISTINCT a.id_artist, a.lastname_artist, a.firstname_artist FROM artists a, movies m WHERE a.id_artist = m.director_id AND m.movie_id = ?');
       $req->execute([$id]);
       return $req->fetch();
     }
 
     public function getAllOtherDirectors($id) {
       $req = $this->pdo->prepare(
-        'SELECT DISTINCT f.artiste_id_artiste, a.prenom_artiste, a.nom_artiste FROM artiste a, film f WHERE f.artiste_id_artiste = a.id_artiste AND f.artiste_id_artiste NOT IN
-        (SELECT id_artiste FROM artiste a, film f WHERE a.id_artiste = f.artiste_id_artiste AND f.id_film = ? )'
+        'SELECT DISTINCT m.director_id, a.firstname_artist, a.lastname_artist FROM artists a, movies m WHERE m.director_id = a.id_artist AND m.director_id NOT IN
+        (SELECT id_artist FROM artists a, movies m WHERE a.id_artist = m.director_id AND m.movie_id = ? )'
         );
       $req->execute([$id]);
       return $req->fetchAll();
@@ -65,7 +65,7 @@ class MoviesModel extends Model {
 
     public function getGenre($id) {
       $req = $this->pdo->prepare(
-        'SELECT * FROM genre g, film f WHERE g.id_genre = f.genre_id_genre AND f.id_film = ?'
+        'SELECT * FROM movie_genres g, movies m WHERE g.id_genre = m.genre_id AND m.movie_id = ?'
       );
       $req->execute([$id]);
       return $req->fetch();
@@ -73,8 +73,8 @@ class MoviesModel extends Model {
 
     public function getAllOtherGenres($id) {
       $req = $this->pdo->prepare(
-        'SELECT * FROM genre WHERE nom_genre NOT IN
-        (SELECT nom_genre FROM genre g, film f WHERE g.id_genre = f.genre_id_genre AND f.id_film = ?)'
+        'SELECT * FROM movie_genres WHERE genre NOT IN
+        (SELECT genre FROM movie_genres g, movies m WHERE g.id_genre = m.genre_id AND m.movie_id = ?)'
       );
       $req->execute([$id]);
       return $req->fetchAll();

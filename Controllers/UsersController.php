@@ -163,26 +163,19 @@ class UsersController extends Controller
         // var_dump($loggedInUser);
 
         if ($loggedInUser) {
-          // Create Session
           $hashed_password = $loggedInUser["user_password"];
-          
           if (password_verify($data['password'], $hashed_password)) {
+            // Create Session and redirect because email and password are correct
             $this->createUserSession($loggedInUser);
-            var_dump($_SESSION['id']);
-          } // Password is wrong but user email is right
-            else {
-              $data['password_err'] = 'Password incorrect';
-              $pageTwig = 'Admin/login.html.twig';
-              $template = self::$_twig->load($pageTwig);
-              echo $template->render(["data" => $data]);
-            }
-        } 
-      } else {
-        // Load view with errors
-        // $this->view('users/register', $data);
-        $pageTwig = 'Admin/login.html.twig';
-        $template = self::$_twig->load($pageTwig);
-        echo $template->render(["data" => $data]);
+          } 
+          else {
+            // Password is wrong but user email is right
+            $data['password_err'] = 'Password incorrect';
+            $pageTwig = 'Admin/login.html.twig';
+            $template = self::$_twig->load($pageTwig);
+            echo $template->render(["data" => $data]);
+          }
+        }
       }
     } else {
       // Init data
@@ -210,7 +203,7 @@ class UsersController extends Controller
     $_SESSION['id'] = $user["id"];
     $_SESSION['user_email'] = $user["user_email"];
     $_SESSION['username'] = $user["username"];
-    header('Location: admin');
+    header("Location: " . self::$_baseUrl . "/admin");
   }
 
   public function logout()

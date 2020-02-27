@@ -15,7 +15,7 @@ $mainRouter->addRouteGET('/movies/add', "Movies.addMovie");
 $mainRouter->addRoutePOST('/movies/add', "Movies.insertNewMovie");
 
 // A list of all the movies with the update option
-$mainRouter->addRouteGET('/admin/updatemovies', "Movies.getAllMovies");
+$mainRouter->addRouteGET('/movies/updatemovies', "Movies.getAllMovies");
 
 // Updating each movie separately
 $mainRouter->addRouteGET('/movies/updatemovies/:id', "Movies.getMovie");

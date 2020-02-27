@@ -10,21 +10,23 @@
 {% endblock %}
 
 {% block body %}
-<h1>Add Movie</h1>
-<div class="container">
-  <div class="row"> 
-    <form action="{{baseUrl}}/movies/add" method="POST" class="mx-auto" enctype="multipart/form-data">
+  <div class="row mt-5">
+    <div class="col-md-6 mx-auto mt-5">
+      <div class="card card-body bg-light">
+      <h2>Add Movie</h2>
+      <p>Please fill in this form to add a movie to the movie database</p>
+    <form action="{{baseUrl}}/movies/add" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="titre">Titre</label>
-        <input type="text" name="titre" class="form-control" id="titre" aria-describedby="emailHelp">
+        <input type="text" name="titre" class="form-control form-control-lg" id="titre" aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="annee_sortie">Annee de sortie</label>
-        <input type="number" name="annee_sortie" class="form-control" id="annee_sortie">
+        <input type="number" name="annee_sortie" class="form-control form-control-lg" id="annee_sortie">
       </div>
       <div class="form-group">
         <label for="director">Director</label>
-        <select name="director" class="form-control" id="director">
+        <select name="director" class="form-control form-control-lg" id="director">
         {% for director in directors %}
         <option value="{{ director.id_artiste }}">{{ director.prenom_artiste }} {{ director.nom_artiste }}</option>
         {% endfor %}
@@ -36,24 +38,22 @@
       </div>
       <div class="form-group">
         <label for="annee_sortie">Synopsis</label>
-        <textarea name="synopsis" class="form-control" id="synopsis" rows="3" placeholder="Synopsis"></textarea>
+        <textarea name="synopsis" class="form-control form-control-lg" id="synopsis" rows="3" placeholder="Synopsis"></textarea>
       </div>
       <div class="form-group">
         <label for="genre">Genre</label>
-        <select name="genre" class="form-control" id="genre">
+        <select name="genre" class="form-control form-control-lg" id="genre">
         {% for genre in genres %}
         <option value="{{ genre.id_genre }}">{{ genre.nom_genre }}</option>
         {% endfor %}
         </select>
       </div>
       <button type="submit" name="submit" class="btn btn-primary" value="Submit">Submit</button>
-      {# <div class="form-group">
-        <label for="affiche">Affiche</label>
-        <input type="file" name="affiche" class="form-control" id="affiche">
-      </div> #}
     </form>
   </div>
-</div>
+  </div>
+  </div>
+  </div>
 {% endblock %}
 
 {% block footer %}

@@ -19,6 +19,7 @@ class Controller
     public function __construct()
     {
         self::$_twig = self::getTwig();
+        self::$_baseUrl = self::getBaseUrl();
     }
 
     /**
