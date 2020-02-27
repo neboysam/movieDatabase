@@ -176,6 +176,10 @@ class UsersController extends Controller
             echo $template->render(["data" => $data]);
           }
         }
+      } else {
+        $pageTwig = 'Admin/login.html.twig';
+        $template = self::$_twig->load($pageTwig);
+        echo $template->render(["data" => $data]);
       }
     } else {
       // Init data

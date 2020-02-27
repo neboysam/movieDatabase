@@ -97,18 +97,18 @@ class MoviesController extends Controller
       echo $template->render(["movieDetails" => $movieDetails, 'director' => $director, 'directors' => $directors, 'genre' => $genre, 'genres' => $genres]);
     }
 
-    public function updateMovie($id_film) {
-      $titre = $_POST['titre'];
-      $annee_sortie = $_POST['annee_sortie'];
-      $affiche = $_FILES['affiche']['name'];
-      $affiche_temp = $_FILES['affiche']['tmp_name'];
+    public function updateMovie($movie_id) {
+      $title = $_POST['title'];
+      $release_year = $_POST['release_year'];
+      $poster = $_FILES['poster']['name'];
+      $affiche_temp = $_FILES['poster']['tmp_name'];
       $synopsis = $_POST['synopsis'];
-      $genre = $_POST['genre'];
-      $director = $_POST['director'];
+      $genre_id = $_POST['genre_id'];
+      $director_id = $_POST['director_id'];
 
-      move_uploaded_file($affiche_temp, "../Uploads/posters/$affiche");
+      move_uploaded_file($affiche_temp, "../Uploads/posters/$poster");
 
-      if($this->model->updateMovie($id_film, $titre, $annee_sortie, $affiche, $synopsis, $genre, $director)) {
+      if($this->model->updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id)) {
         echo "ok";
       } else {
         echo "not ok";

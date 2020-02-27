@@ -1,10 +1,6 @@
-{% extends "partials/base.html.twig" %}
+{% extends "admin/admin.home.html.twig" %}
 
 {% block title %}Movies Database{% endblock %}
-
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ baseUrl }}/assets/css/style.css">
-{% endblock %}
 
 {% block header %}
 {% endblock %}
@@ -20,7 +16,8 @@
           <img src='/Uploads/posters/{{ movie.poster }}' class="card-img b-0">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
-            <a href="{{baseUrl}}/movies/updatemovies/{{movie.movie_id}}" class="btn btn-info">Update Movie</a>
+            <a href="{{baseUrl}}/movies/updatemovie/{{movie.movie_id}}" class="card-link">Update</a>
+            <a href="{{baseUrl}}/movies/deletemovie/{{movie.movie_id}}" class="card-link">Delete</a>
           </div>
         </div>
       </div>

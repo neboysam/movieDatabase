@@ -28,14 +28,14 @@ class MoviesModel extends Model {
 
     public function getAllDirectors() {
       $req = $this->pdo->prepare(
-        'SELECT DISTINCT id_artist, firstname_artist, lastname_artist FROM artists a, movies m WHERE a.id_artist = m.director_id');
+        'SELECT DISTINCT a.id_artist, a.firstname_artist, a.lastname_artist FROM artists a, movies m WHERE a.id_artist = m.director_id');
       $req->execute();
       return $req->fetchAll();
     }
 
     public function getAllGenres() {
       $req = $this->pdo->prepare(
-        'SELECT * FROM genre'
+        'SELECT * FROM movie_genres'
       );
       $req->execute();
       return $req->fetchAll();
@@ -80,10 +80,10 @@ class MoviesModel extends Model {
       return $req->fetchAll();
     }
 
-    public function updateMovie($id_film, $titre, $annee_sortie, $affiche, $synopsis, $genre, $director) {
+    public function updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id) {
       $req = self::$_pdo->prepare(
-        'UPDATE film SET titre=:titre, annee_sortie=:annee_sortie, affiche=:affiche, synposis=:sinopsis, genre_id_genre=:genre_id_genre, artiste_id_artiste=:artiste_id_artiste WHERE id_film=:id_film'
+        'UPDATE movies SET title=:title, release_year=:release_year, poster=:poster, synposis=:sinopsis, genre_id=:genre_id, director_id=:director_id WHERE movie_id=:movie_id'
       );
-      $req->execute(['titre' => $titre, 'annee_sortie' => $annee_sortie, 'affiche' => $affiche, 'synopsis' => $synopsis, 'genre' => $genre, 'director' => $director]);
+      $req->execute(['title' => $title, 'release_year' => $release_year, 'poster' => $poster, 'synposis' => $synopsis, 'genre_id' => $genre_id, 'director_id' => $director_id]);
     }
 }

@@ -14,12 +14,17 @@ $mainRouter->addRouteGET('/movies/show/:id', "Movies.showMovie");
 $mainRouter->addRouteGET('/movies/add', "Movies.addMovie");
 $mainRouter->addRoutePOST('/movies/add', "Movies.insertNewMovie");
 
-// A list of all the movies with the update option
-$mainRouter->addRouteGET('/movies/updatemovies', "Movies.getAllMovies");
+// A list of all the movies with the update and delete options
+$mainRouter->addRouteGET('/movies/getallmovies', "Movies.getAllMovies");
 
-// Updating each movie separately
-$mainRouter->addRouteGET('/movies/updatemovies/:id', "Movies.getMovie");
-$mainRouter->addRoutePOST('/movies/updatemovies/:id', "Movies.updateMovie");
+// Show all movies; update or delete each movie separately
+$mainRouter->addRouteGET('/movies/managemovies/:id', "Movies.getMovie");
+$mainRouter->addRoutePOST('/movies/updatemovie/:id', "Movies.updateMovie");
+$mainRouter->addRouteGET('/movies/deletemovie/:id', "Movies.deleteMovie");
+
+// Delete movie
+// $mainRouter->addRouteGET('/movies/delete', "Movies.getAllMovies");
+// $mainRouter->addRoutePOST('/movies/delete/:id', "Movies.deleteMovie");
 
 // List of all artists
 $mainRouter->addRouteGET('/artists', 'Artists.index');
