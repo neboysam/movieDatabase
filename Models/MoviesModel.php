@@ -16,7 +16,7 @@ class MoviesModel extends Model {
       $req = $this->pdo->prepare('SELECT * FROM movies WHERE movie_id = ?');
       $req->execute([$id]);
       return $req->fetch();
-  }
+    }
 
     public function getAllMovies() {
       $req = $this->pdo->prepare(

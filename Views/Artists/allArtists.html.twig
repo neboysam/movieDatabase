@@ -10,18 +10,16 @@
 {% endblock %}
 
 {% block body %}
-<h1>Artists List</h1>
+<h1 class="text-danger text-center mt-5 mb-4">List of Artists</h1>
 <div class="back_page">
   <div class="container">
     <div class="row pt-4">
-      {% for exemple in result %}
+      {% for artist in allArtists %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
-          <img src='../Uploads/posters/{{ exemple.image }}' class="card-img b-0">
+          <a href="{{ baseUrl }}/artists/show/{{artist.id_artist}}"><img src='{{ baseUrl }}/Uploads/artists/{{ artist.image }}' class="card-img b-0"></a>
           <div class="card-body">
-            <h5 class="card-title">{{ exemple.nom_artiste }} {{ exemple.prenom_artiste }}</h5>
-            <p>Birth date: {{ exemple.date_naissance }}</p>
-            <p class="card-text">Biography: <br>{{ exemple.biography }}</p>
+            <h5 class="card-title">{{ artist.lastname_artist }} {{ artist.firstname_artist }}</h5>
           </div>
         </div>
       </div>

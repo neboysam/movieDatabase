@@ -28,19 +28,17 @@ class ArtistsController extends Controller
   // }
 
     public function index() {
-      $result = $this->model->getAllArtists();
+      $allArtists = $this->model->getAllArtists();
       $pageTwig = 'Artists/allArtists.html.twig';
       $template = self::$_twig->load($pageTwig);
-      echo $template->render(["result" => $result]);
+      echo $template->render(["allArtists" => $allArtists]);
     }
 
-  //   public function show(int $id) {
-  //     $result = $this->model->getActors($id);
-  //     $movieDetails = $this->model->getMovieDetails($id);
-  //     $pageTwig = 'Movies/showMovie.html.twig';
-  //     self::$_twig->addGlobal('actor', $result);
-  //     $template = self::$_twig->load($pageTwig);
-  //     echo $template->render(["result" => $result, "movieDetails" => $movieDetails]);
-  //   }
+    public function showArtist(int $id) {
+      $artistDetails = $this->model->getArtistDetails($id);
+      $pageTwig = 'Artists/showArtist.html.twig';
+      $template = self::$_twig->load($pageTwig);
+      echo $template->render(["artistDetails" => $artistDetails]);
+    }
 
 }

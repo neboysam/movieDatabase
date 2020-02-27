@@ -1,0 +1,86 @@
+{# {% extends "partials/base.html.twig" %}
+
+{% block title %}Your Selected Artist{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="assets/css/style.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-danger text-center mt-5 mb-4">Your Selected Artist, {{ artist.lastname_artist }} {{ artist.firstname_artist }}</h1>
+<div class="back_page">
+  <div class="container">
+    <div class="row pt-4">
+      {% for artist in artistDetails %}
+      <div class="col-md-3">
+        <div class="card text-white bg-dark mb-4">
+          <a href="{{ baseUrl }}/artists/show/{{artist.id_artist}}"><img src='{{ baseUrl }}/Uploads/artists/{{ artist.image }}' class="card-img b-0"></a>
+          <div class="card-body">
+            <h5 class="card-title">{{ artist.lastname_artist }} {{ artist.firstname_artist }}</h5>
+            <p>Birth date: {{ artist.birth_date }}</p>
+            <p class="card-text">Biography: <br>{{ artist.biography }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %} #}
+
+
+
+{% extends "partials/base.html.twig" %}
+
+{% block title %}{{ artistDetails.title }}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ baseUrl }}/assets/css/style.css">
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<h1 class="text-danger text-center mt-5 mb-4">Your Selected Artist</h1>
+<div class="card mb-3 text-white bg-dark mx-auto" style="max-width: 1000px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      {# <img src='{{ baseUrl }}/Uploads/posters/{{ movieDetails.affiche }}' class="img-fluid"> #}
+      <img src='{{ baseUrl }}/Uploads/artists/{{ artistDetails.image }}' class="img-fluid">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ artistDetails.lastname_artist }} {{ artistDetails.firstname_artist }}</h5>
+        <p>Birth date: {{ artistDetails.birth_date }}</p>
+        {# <div class="card-block d-flex">
+          <p><strong>Starring:</strong></p>
+          <ul>
+            {% for actor in actorsDetails %}
+              <li class="card-text">&nbsp;{{ actor.firstname_artist }} {{ actor.lastname_artist }}{% if not loop.last %},&nbsp;{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </div> #}
+        <p class="card-text"><strong>Biography:</strong><br>{{ artistDetails.biography }}</p>
+        <a href="{{baseUrl}}/artists" class="btn btn-info">Back</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

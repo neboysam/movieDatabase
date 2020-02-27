@@ -20,13 +20,15 @@ class ArtistsModel extends Model {
 
     public function getAllArtists() {
         $req = $this->pdo->prepare(
-          'SELECT * FROM artiste'
+          'SELECT * FROM artists ORDER BY lastname_artist'
         );
         $req->execute();
         return $req->fetchAll();
     }
 
-    // public function addMovie() {
-
-    // }
+    public function getArtistDetails($id) {
+      $req = $this->pdo->prepare('SELECT * FROM artists WHERE id_artist = ?');
+      $req->execute([$id]);
+      return $req->fetch();
+    }
 }

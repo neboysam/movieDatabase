@@ -10,11 +10,10 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center;">Your Selected Movie</h1>
+<h1 class="text-danger text-center mt-5 mb-4">Your Selected Movie</h1>
 <div class="card mb-3 text-white bg-dark mx-auto" style="max-width: 1000px;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      {# <img src='{{ baseUrl }}/Uploads/posters/{{ movieDetails.affiche }}' class="img-fluid"> #}
       <img src='/Uploads/posters/{{ movieDetails.poster }}' class="img-fluid">
     </div>
     <div class="col-md-8">
@@ -23,12 +22,13 @@
         <div class="card-block d-flex">
           <p><strong>Starring:</strong></p>
           <ul>
-            {% for exemple in actorsDetails %}
-              <li class="card-text">&nbsp;{{ exemple.firstname_artist }} {{ exemple.lastname_artist }}{% if not loop.last %},&nbsp;{% endif %}</li>
+            {% for actor in actorsDetails %}
+              <li class="card-text">&nbsp;{{ actor.firstname_artist }} {{ actor.lastname_artist }}{% if not loop.last %},&nbsp;{% endif %}</li>
             {% endfor %}
           </ul>
         </div>
         <p class="card-text"><strong>Synopsis:</strong><br>{{ movieDetails.synposis }}</p>
+        <a href="{{ baseUrl }}" class="btn btn-info">Back</a>
       </div>
     </div>
   </div>

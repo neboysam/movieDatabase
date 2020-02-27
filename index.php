@@ -23,6 +23,7 @@ $mainRouter->addRoutePOST('/movies/updatemovies/:id', "Movies.updateMovie");
 
 // List of all artists
 $mainRouter->addRouteGET('/artists', 'Artists.index');
+$mainRouter->addRouteGET('/artists/show/:id', "Artists.showArtist");
 
 // Administration
 $mainRouter->addRouteGET('/admin', 'Admin.index');
