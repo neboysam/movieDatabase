@@ -98,18 +98,7 @@ class MoviesController extends Controller
     }
 
     public function updateMovie($movie_id) {
-      $movieDetails = $this->model->getMovieDetails($movie_id);
-      $director = $this->model->getDirectorDetails($movie_id);
-      $directors = $this->model->getAllOtherDirectors($movie_id);
-
-      $genre = $this->model->getGenre($movie_id);
-      $genres = $this->model->getAllOtherGenres($movie_id);
-
-      $pageTwig = 'Movies/getMovie.html.twig';
-      $template = self::$_twig->load($pageTwig);
-      echo $template->render(["movieDetails" => $movieDetails, 'director' => $director, 'directors' => $directors, 'genre' => $genre, 'genres' => $genres]);
-
-
+      //if isset $_FILES so change poster if not, don't touch this information
       $title = $_POST['title'];
       $release_year = $_POST['release_year'];
       $poster = $_FILES['poster']['name'];
@@ -118,14 +107,11 @@ class MoviesController extends Controller
       $genre_id = $_POST['genre_id'];
       $director_id = $_POST['director_id'];
 
+      //supprimer l'affiche associé au film précédemment 
       move_uploaded_file($poster_temp, "Uploads/posters/$poster");
 
-      if($this->model->updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id)) {
-        echo "ok";
-      } else {
-        echo "not ok";
-      };
+      $this->model->updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id);
 
-      // header("Location: http://localhost/ACS-MovieRating/movies");
+      header("Location: http://localhost/PHP_OOP_movieDB");
     }
 }

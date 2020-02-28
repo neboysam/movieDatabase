@@ -84,6 +84,6 @@ class MoviesModel extends Model {
       $req = self::$_pdo->prepare(
         'UPDATE movies SET title=:title, release_year=:release_year, poster=:poster, synposis=:synopsis, genre_id=:genre_id, director_id=:director_id WHERE movie_id=:movie_id'
       );
-      $req->execute(['title' => $title, 'release_year' => $release_year, 'poster' => $poster, 'synopsis' => $synopsis, 'genre_id' => $genre_id, 'director_id' => $director_id]);
+      return $req->execute([':movie_id' => $movie_id,':title' => $title, ':release_year' => $release_year, ':poster' => $poster, ':synopsis' => $synopsis, ':genre_id' => $genre_id, ':director_id' => $director_id]);
     }
 }
