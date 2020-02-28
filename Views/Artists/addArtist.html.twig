@@ -1,0 +1,49 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Add Artist{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 mx-auto">
+      <div class="card card-body bg-light">
+      <h2>Add Artist</h2>
+      <p>Please fill in this form to add an artist to the movie database</p>
+    <form action="{{baseUrl}}/admin/artists/add" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="lastname_artist">Lastname</label>
+        <input type="text" name="lastname_artist" class="form-control form-control-lg" id="lastname_artist" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="firstname_artist">Firstname</label>
+        <input type="text" name="firstname_artist" class="form-control form-control-lg" id="firstname_artist" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <label for="birth_date">Date of Birth</label>
+        <input type="number" name="birth_date" class="form-control form-control-lg" id="birth_date">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Movie image input</label>
+        <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+      </div>
+      <div class="form-group">
+        <label for="biography">Biography</label>
+        <textarea name="biography" class="form-control form-control-lg" id="biography" rows="3" placeholder="Biography"></textarea>
+      </div>
+      <button type="submit" name="submit" class="btn btn-primary" value="Submit">Submit</button>
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

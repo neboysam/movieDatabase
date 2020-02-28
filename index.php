@@ -32,6 +32,14 @@ $mainRouter->addRouteGET('/admin/movies/deletemovie/:id', "Movies.deleteMovie");
 $mainRouter->addRouteGET('/artists', 'Artists.index');
 $mainRouter->addRouteGET('/artists/show/:id', "Artists.showArtist");
 
+// Add artist
+$mainRouter->addRouteGET('/admin/artists/add', 'Artists.addArtist');
+$mainRouter->addRoutePOST('/admin/artists/add', 'Artists.insertNewArtist');
+
+// Add artist to movies
+$mainRouter->addRouteGET('/admin/artists/addtomovies', 'Artists.showArtistAndMovies');
+$mainRouter->addRoutePOST('/admin/artists/addtomovies', 'Artists.addArtistToMovies');
+
 // Administration
 $mainRouter->addRouteGET('/admin', 'Admin.index');
 

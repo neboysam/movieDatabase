@@ -41,4 +41,45 @@ class ArtistsController extends Controller
       echo $template->render(["artistDetails" => $artistDetails]);
     }
 
+    public function addArtist() {
+      // Display the input form on the Add Movie page
+      $pageTwig = 'Artists/addArtist.html.twig';
+      $template = self::$_twig->load($pageTwig);
+      echo $template->render();
+    }
+
+    public function insertNewArtist() {
+      $lastname_artist = $_POST['lastname_artist'];
+      $firstname_artist = $_POST['firstname_artist'];
+      $birth_date = $_POST['birth_date'];
+      $image = $_FILES['image']['name'];
+      $image_temp = $_FILES['image']['tmp_name'];
+      $biography = $_POST['biography'];
+
+      move_uploaded_file($image_temp, "Uploads/artists/$image");
+
+      $this->model->insertArtist($lastname_artist, $firstname_artist, $birth_date, $image, $biography);
+
+      header("Location: http://localhost/PHP_OOP_movieDB/artists");
+    }
+
+    public function showArtistAndMovies() {
+      $allArtists = $this->model->getAllArtists();
+      $allMovies = $this->model->getAllMovies();
+      $pageTwig = 'Artists/showArtistAndMovies.html.twig';
+      $template = self::$_twig->load($pageTwig);
+      echo $template->render(["allArtists" => $allArtists, "allMovies" => $allMovies]);
+    }
+
+    public function addArtistToMovies($id_artist, $id_movie, $id_uniq) {
+      $id_artist = $_POST['id_artist'];
+      $id_movie = $_POST['id_movie'];
+      $id_uniq = max($id_uniq) + 1;
+
+      $this->model->insertArtistAndMovie($id_artist, $id_movie, $id_uniq);
+
+      header("Location: http://localhost/PHP_OOP_movieDB");
+    }
+    
+
 }

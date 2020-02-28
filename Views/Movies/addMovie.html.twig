@@ -12,18 +12,18 @@
       <div class="card card-body bg-light">
       <h2>Add Movie</h2>
       <p>Please fill in this form to add a movie to the movie database</p>
-    <form action="{{baseUrl}}/movies/add" method="POST" enctype="multipart/form-data">
+    <form action="{{baseUrl}}/admin/movies/add" method="POST" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="titre">Titre</label>
-        <input type="text" name="titre" class="form-control form-control-lg" id="titre" aria-describedby="emailHelp">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control form-control-lg" id="title" aria-describedby="emailHelp">
       </div>
       <div class="form-group">
-        <label for="annee_sortie">Release Year</label>
-        <input type="number" name="annee_sortie" class="form-control form-control-lg" id="annee_sortie">
+        <label for="release_year">Release Year</label>
+        <input type="number" name="release_year" class="form-control form-control-lg" id="release_year">
       </div>
       <div class="form-group">
-        <label for="director">Director</label>
-        <select name="director" class="form-control form-control-lg" id="director">
+        <label for="director_id">Director</label>
+        <select name="director_id" class="form-control form-control-lg" id="director_id">
         {% for director in directors %}
         <option value="{{ director.id_artist }}">{{ director.firstname_artist }} {{ director.lastname_artist }}</option>
         {% endfor %}
@@ -31,15 +31,15 @@
       </div>
       <div class="form-group">
         <label for="exampleFormControlFile1">Movie image input</label>
-        <input type="file" name="affiche" class="form-control-file" id="exampleFormControlFile1">
+        <input type="file" name="poster" class="form-control-file" id="exampleFormControlFile1">
       </div>
       <div class="form-group">
-        <label for="annee_sortie">Synopsis</label>
+        <label for="synopsis">Synopsis</label>
         <textarea name="synopsis" class="form-control form-control-lg" id="synopsis" rows="3" placeholder="Synopsis"></textarea>
       </div>
       <div class="form-group">
-        <label for="genre">Genre</label>
-        <select name="genre" class="form-control form-control-lg" id="genre">
+        <label for="genre_id">Genre</label>
+        <select name="genre_id" class="form-control form-control-lg" id="genre_id">
         {% for genre in genres %}
           <option value="{{ genre.id_genre }}">{{ genre.genre }}</option>
         {% endfor %}

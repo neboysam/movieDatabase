@@ -49,17 +49,17 @@ class MoviesController extends Controller
     }
 
     public function insertNewMovie() {
-      $titre = $_POST['titre'];
-      $annee_sortie = $_POST['annee_sortie'];
-      $affiche = $_FILES['affiche']['name'];
-      $affiche_temp = $_FILES['affiche']['tmp_name'];
+      $title = $_POST['title'];
+      $release_year = $_POST['release_year'];
+      $poster = $_FILES['poster']['name'];
+      $poster_temp = $_FILES['poster']['tmp_name'];
       $synopsis = $_POST['synopsis'];
-      $genre = $_POST['genre'];
-      $director = $_POST['director'];
+      $genre_id = $_POST['genre_id'];
+      $director_id = $_POST['director_id'];
 
-      move_uploaded_file($affiche_temp, "../Uploads/posters/$affiche");
+      move_uploaded_file($poster_temp, "Uploads/posters/$poster");
 
-      $this->model->insertMovie($titre, $annee_sortie, $affiche, $synopsis, $genre, $director);
+      $this->model->insertMovie($title, $release_year, $poster, $synopsis, $genre_id, $director_id);
 
       // if($this->model->insertMovie($titre, $annee_sortie, $synopsis, $genre, $director))
       // {
@@ -73,7 +73,7 @@ class MoviesController extends Controller
       //   echo $_POST['genre'];
       // }
 
-      header("Location: http://localhost/ACS-MovieRating/movies");
+      header("Location: http://localhost/PHP_OOP_movieDB");
     }
 
     public function getAllMovies() {
@@ -113,12 +113,12 @@ class MoviesController extends Controller
       $title = $_POST['title'];
       $release_year = $_POST['release_year'];
       $poster = $_FILES['poster']['name'];
-      $affiche_temp = $_FILES['poster']['tmp_name'];
+      $poster_temp = $_FILES['poster']['tmp_name'];
       $synopsis = $_POST['synopsis'];
       $genre_id = $_POST['genre_id'];
       $director_id = $_POST['director_id'];
 
-      move_uploaded_file($affiche_temp, "../Uploads/posters/$poster");
+      move_uploaded_file($poster_temp, "Uploads/posters/$poster");
 
       if($this->model->updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id)) {
         echo "ok";

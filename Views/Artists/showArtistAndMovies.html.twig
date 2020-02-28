@@ -1,0 +1,45 @@
+{% extends "admin/partials/base.admin.html.twig" %}
+
+{% block title %}Add Artist{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 mx-auto">
+      <div class="card card-body bg-light">
+      <h2>Add Artist</h2>
+      <p>Please fill in this form to add an artist to the movie database</p>
+    <form action="{{baseUrl}}/admin/artists/addtomovies" method="POST">
+      <div class="form-group">
+        <label for="id_artist">Artist</label>
+        <select name="id_artist" class="form-control form-control-lg" id="id_artist">
+        {% for artist in allArtists %}
+        <option value="{{ artist.id_artist }}">{{ artist.firstname_artist }} {{ artist.lastname_artist }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="id_movie">Movie</label>
+        <select name="id_movie" class="form-control form-control-lg" id="id_movie">
+        {% for movie in allMovies %}
+        <option value="{{ movie.movie_id }}">{{ movie.title }}</option>
+        {% endfor %}
+        </select>
+      </div>
+      <button type="submit" name="submit" class="btn btn-primary" value="Add">Add</button>
+    </form>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

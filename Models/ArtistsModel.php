@@ -26,9 +26,29 @@ class ArtistsModel extends Model {
         return $req->fetchAll();
     }
 
+    public function getAllMovies() {
+      $req = $this->pdo->prepare(
+        'SELECT * FROM movies'
+      );
+      $req->execute();
+      return $req->fetchAll();
+  }
+
     public function getArtistDetails($id) {
       $req = $this->pdo->prepare('SELECT * FROM artists WHERE id_artist = ?');
       $req->execute([$id]);
       return $req->fetch();
+    }
+
+    public function insertArtist($lastname_artist, $firstname_artist, $birth_date, $image, $biography) {
+      $sql = "INSERT INTO artists (lastname_artist, firstname_artist, birth_date, image, biography) VALUES (:lastname_artist, :firstname_artist, :birth_date, :image, :biography)";
+      $req = self::$_pdo->prepare($sql);
+      return $req->execute(['lastname_artist' => $lastname_artist, 'firstname_artist' => $firstname_artist, 'birth_date' => $birth_date, 'image' => $image, 'biography' => $biography]);
+    }
+
+    public function insertArtistAndMovie($id_artist, $id_movie, $id_uniq) {
+      $sql = "INSERT INTO artists_movies (id_artist, id_movie, id_uniq) VALUES (:id_artist, :id_movie, :id_uniq)";
+      $req = self::$_pdo->prepare($sql);
+      return $req->execute(['id_artist' => $id_artist, 'id_movie' => $id_movie, 'id_uniq' => $id_uniq]);
     }
 }

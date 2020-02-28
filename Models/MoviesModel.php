@@ -41,10 +41,10 @@ class MoviesModel extends Model {
       return $req->fetchAll();
     }
 
-    public function insertMovie($titre, $annee_sortie, $affiche, $synopsis, $genre, $director) {
-      $sql = "INSERT INTO film (titre, annee_sortie, affiche, synposis, genre_id_genre, artiste_id_artiste) VALUES (:titre, :annee_sortie, :affiche, :synopsis, :genre, :director)";
+    public function insertMovie($title, $release_year, $poster, $synopsis, $genre_id, $director_id) {
+      $sql = "INSERT INTO movies (title, release_year, poster, synposis, genre_id, director_id) VALUES (:title, :release_year, :poster, :synopsis, :genre_id, :director_id)";
       $req = self::$_pdo->prepare($sql);
-      return $req->execute(['titre' => $titre, 'annee_sortie' => $annee_sortie, 'affiche' => $affiche, 'synopsis' => $synopsis, 'genre' => $genre, 'director' => $director]);
+      return $req->execute(['title' => $title, 'release_year' => $release_year, 'poster' => $poster, 'synopsis' => $synopsis, 'genre_id' => $genre_id, 'director_id' => $director_id]);
     }
 
     public function getDirectorDetails($id) {
@@ -82,8 +82,8 @@ class MoviesModel extends Model {
 
     public function updateMovie($movie_id, $title, $release_year, $poster, $synopsis, $genre_id, $director_id) {
       $req = self::$_pdo->prepare(
-        'UPDATE movies SET title=:title, release_year=:release_year, poster=:poster, synposis=:sinopsis, genre_id=:genre_id, director_id=:director_id WHERE movie_id=:movie_id'
+        'UPDATE movies SET title=:title, release_year=:release_year, poster=:poster, synposis=:synopsis, genre_id=:genre_id, director_id=:director_id WHERE movie_id=:movie_id'
       );
-      $req->execute(['title' => $title, 'release_year' => $release_year, 'poster' => $poster, 'synposis' => $synopsis, 'genre_id' => $genre_id, 'director_id' => $director_id]);
+      $req->execute(['title' => $title, 'release_year' => $release_year, 'poster' => $poster, 'synopsis' => $synopsis, 'genre_id' => $genre_id, 'director_id' => $director_id]);
     }
 }
