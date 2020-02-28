@@ -46,9 +46,9 @@ class ArtistsModel extends Model {
       return $req->execute(['lastname_artist' => $lastname_artist, 'firstname_artist' => $firstname_artist, 'birth_date' => $birth_date, 'image' => $image, 'biography' => $biography]);
     }
 
-    public function insertArtistAndMovie($id_artist, $id_movie, $id_uniq) {
-      $sql = "INSERT INTO artists_movies (id_artist, id_movie, id_uniq) VALUES (:id_artist, :id_movie, :id_uniq)";
+    public function insertArtistAndMovie($id_artist, $id_movie) {
+      $sql = "INSERT INTO artists_movies (id_artist, id_movie) VALUES (:id_artist, :id_movie)";
       $req = self::$_pdo->prepare($sql);
-      return $req->execute(['id_artist' => $id_artist, 'id_movie' => $id_movie, 'id_uniq' => $id_uniq]);
+      return $req->execute(['id_artist' => $id_artist, 'id_movie' => $id_movie]);
     }
 }

@@ -63,20 +63,23 @@ class ArtistsController extends Controller
       header("Location: http://localhost/PHP_OOP_movieDB/artists");
     }
 
-    public function showArtistAndMovies() {
+    public function showArtistsAndMovies() {
       $allArtists = $this->model->getAllArtists();
       $allMovies = $this->model->getAllMovies();
-      $pageTwig = 'Artists/showArtistAndMovies.html.twig';
+      $pageTwig = 'Artists/showArtistsAndMovies.html.twig';
       $template = self::$_twig->load($pageTwig);
       echo $template->render(["allArtists" => $allArtists, "allMovies" => $allMovies]);
     }
 
-    public function addArtistToMovies($id_artist, $id_movie, $id_uniq) {
+    public function addArtistToMovies($id_artist, $id_movie) {
       $id_artist = $_POST['id_artist'];
       $id_movie = $_POST['id_movie'];
-      $id_uniq = max($id_uniq) + 1;
 
-      $this->model->insertArtistAndMovie($id_artist, $id_movie, $id_uniq);
+      if($this->model->insertArtistAndMovie($id_artist, $id_movie)) {
+        echo "ok";
+      } else {
+        echo "not ok";
+      }
 
       header("Location: http://localhost/PHP_OOP_movieDB");
     }

@@ -37,7 +37,7 @@ $mainRouter->addRouteGET('/admin/artists/add', 'Artists.addArtist');
 $mainRouter->addRoutePOST('/admin/artists/add', 'Artists.insertNewArtist');
 
 // Add artist to movies
-$mainRouter->addRouteGET('/admin/artists/addtomovies', 'Artists.showArtistAndMovies');
+$mainRouter->addRouteGET('/admin/artists/addtomovies', 'Artists.showArtistsAndMovies');
 $mainRouter->addRoutePOST('/admin/artists/addtomovies', 'Artists.addArtistToMovies');
 
 // Administration
