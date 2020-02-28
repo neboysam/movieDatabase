@@ -47,12 +47,12 @@ class UsersController extends Controller
       if (empty($data['email'])) {
         $data['email_err'] = 'Please enter email';
       }
-      // } else {
-      //   // Check email
-      //   if($this->model->findUserByEmail($data['email'])){
-      //     $data['email_err'] = 'Email is already taken';
-      //   }
-      // }
+        else {
+        // Check email
+        if($this->usersModel->findUserByEmail($data['email'])){
+          $data['email_err'] = 'Email is already taken';
+        }
+      }
 
       // Validate Name
       if (empty($data['name'])) {
@@ -139,9 +139,9 @@ class UsersController extends Controller
       if (empty($data['email'])) {
         $data['email_err'] = 'Please enter email';
       }
-      // } else {
+      //  else {
       //   // Check email
-      //   if($this->model->findUserByEmail($data['email'])){
+      //   if($this->usersModel->findUserByEmail($data['email'])){
       //     $data['email_err'] = 'Email is already taken';
       //   }
       // }
@@ -177,6 +177,7 @@ class UsersController extends Controller
           }
         }
       } else {
+        
         $pageTwig = 'Admin/login.html.twig';
         $template = self::$_twig->load($pageTwig);
         echo $template->render(["data" => $data]);
@@ -212,7 +213,6 @@ class UsersController extends Controller
 
   public function logout()
   {
-    var_dump($_SESSION);
     unset($_SESSION['id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['username']);

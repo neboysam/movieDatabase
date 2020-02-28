@@ -50,5 +50,4 @@ class UsersModel extends Model {
     public function rowCount(){
       return $this->req->rowCount();
     }
-
   }
