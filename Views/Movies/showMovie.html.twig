@@ -2,10 +2,6 @@
 
 {% block title %}{{ movieDetails.title }}{% endblock %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="{{ baseUrl }}/assets/css/style.css">
-{% endblock %}
-
 {% block header %}
 {% endblock %}
 
@@ -23,7 +19,7 @@
           <p><strong>Starring:</strong></p>
           <ul>
             {% for actor in actorsDetails %}
-              <li class="card-text">&nbsp;{{ actor.firstname_artist }} {{ actor.lastname_artist }}{% if not loop.last %},&nbsp;{% endif %}</li>
+              <li class="card-text">&nbsp;<a href="{{ baseUrl }}/artists/show/{{ actor.id_artist }}">{{ actor.firstname_artist }} {{ actor.lastname_artist }}</a>{% if not loop.last %},&nbsp;{% endif %}</li>
             {% endfor %}
           </ul>
         </div>

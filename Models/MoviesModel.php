@@ -7,7 +7,7 @@ class MoviesModel extends Model {
     }
 
     public function getActorsDetails($id) {
-      $req = $this->pdo->prepare('SELECT firstname_artist, lastname_artist FROM artists a, movies m, artists_movies r where a.id_artist = r.id_artist AND m.movie_id = r.id_movie AND m.movie_id = ? AND a.id_artist NOT IN (SELECT director_id FROM movies)');
+      $req = $this->pdo->prepare('SELECT * FROM artists a, movies m, artists_movies r where a.id_artist = r.id_artist AND m.movie_id = r.id_movie AND m.movie_id = ? AND a.id_artist NOT IN (SELECT director_id FROM movies)');
       $req->execute([$id]);
       return $req->fetchAll();
     }
