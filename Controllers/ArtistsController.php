@@ -71,18 +71,13 @@ class ArtistsController extends Controller
       echo $template->render(["allArtists" => $allArtists, "allMovies" => $allMovies]);
     }
 
-    public function addArtistToMovies($id_artist, $id_movie, $id_uniq) {
+    public function addArtistToMovies() {
       $id_artist = $_POST['id_artist'];
       $id_movie = $_POST['id_movie'];
       $id_uniq = $id_artist . $id_movie;
+      $this->model->insertArtistAndMovie($id_artist, $id_movie, $id_uniq);
 
-      if($this->model->insertArtistAndMovie($id_artist, $id_movie, $id_uniq)) {
-        echo "ok";
-      } else {
-        echo "not ok";
-      }
-
-      //header("Location: http://localhost/PHP_OOP_movieDB");
+      header("Location: http://localhost/PHP_OOP_movieDB");
     }
     
 
