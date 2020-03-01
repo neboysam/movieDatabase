@@ -16,8 +16,10 @@
           <img src='/Uploads/posters/{{ movie.poster }}' class="card-img b-0">
           <div class="card-body">
             <h5 class="card-title">{{ movie.title }}</h5>
-            <a href="{{baseUrl}}/admin/movies/updatemovie/{{movie.movie_id}}" class="card-link">Update</a>
-            <a href="{{baseUrl}}/admin/movies/deletemovie/{{movie.movie_id}}" class="card-link">Delete</a>
+            <div class="btn-group">
+              <a href="{{baseUrl}}/admin/movies/updatemovie/{{movie.movie_id}}" class="btn btn-sm btn-outline-secondary">Update</a>
+              <a href="{{baseUrl}}/admin/movies/deletemovie/{{movie.movie_id}}" class="btn btn-sm btn-outline-secondary">Delete</a>
+            </div>
           </div>
         </div>
       </div>
