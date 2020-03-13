@@ -17,7 +17,7 @@
       {% for artist in allArtists %}
       <div class="col-md-3">
         <div class="card text-white bg-dark mb-4">
-          <a href="{{ baseUrl }}/artists/show/{{artist.id_artist}}"><img src='{{ baseUrl }}/Uploads/artists/{{ artist.image }}' class="card-img b-0"></a>
+          <a href="{{ baseUrl }}/artists/show/{{artist.id_artist}}"><img src='{{ baseUrl }}/Uploads/artists/{{ artist.image }}' class="card-img-top b-0"></a>
           <div class="card-body">
             <h5 class="card-title">{{ artist.lastname_artist }} {{ artist.firstname_artist }}</h5>
           </div>

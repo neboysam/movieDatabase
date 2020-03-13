@@ -23,3 +23,17 @@ h1 {
   list-style: none;
   display: flex;
 }
+
+.card-img-top {
+  height: 295px;
+  object-fit: cover;
+}
+
+/* .card:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+} */
