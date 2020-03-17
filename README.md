@@ -1,6 +1,6 @@
 # Movie Rating
 
-This project was created by OnlineFormaPro Access Code School. 
+This project was created during the web development training performed at Access Code School, OnlineFormaPro. 
 
 It consists of a web app for displaying different movies, actors and directors.
 
@@ -16,7 +16,7 @@ You can install everything with the following command:
     composer require twig/twig
 
 
-And don't forget to create your autoloader with :
+And don't forget to create your autoloader using :
 
     composer dump-autoload
     
